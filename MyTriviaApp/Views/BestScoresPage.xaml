@@ -10,6 +10,14 @@
     <ScrollView>
 
         <StackLayout>
+            <Label Margin="20,20,20,20" HorizontalOptions="Center">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontAttributes="Bold,Italic" Text="Best Scores List" FontSize="40" TextColor="Salmon" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Grid
     HorizontalOptions="Center"
     RowDefinitions="*,*"
@@ -31,7 +39,7 @@ WidthRequest="110"
 BackgroundColor="Coral"
 Command="{Binding LoadPlayersCommand}"
 CornerRadius="20"
-Text="טען תלמידים"
+Text="טען שחקנים"
 WidthRequest="110" 
             BorderColor="Black"
             BorderWidth="2"/>
@@ -55,7 +63,7 @@ WidthRequest="110"
 
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="Name:"/>
+                                                    <Span FontAttributes="Bold" Text="Name: "/>
                                                     <Span Text="{Binding Name}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -65,7 +73,7 @@ WidthRequest="110"
                                         <Label Margin="20,0,0,0">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="Points:"/>
+                                                    <Span FontAttributes="Bold" Text="Points: "/>
                                                     <Span Text="{Binding Points}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>

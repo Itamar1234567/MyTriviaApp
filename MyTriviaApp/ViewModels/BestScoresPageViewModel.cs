@@ -19,6 +19,8 @@ namespace MyTriviaApp.ViewModels
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
         private bool isOrdered;
         private Service service;
+        private Player selectedPlayer;
+        public Player SelectedPlayer { get => selectedPlayer;set { selectedPlayer = value; OnPropertyChanged(); } }
         public BestScoresPageViewModel(Service service)
         {
             this.service = service;
