@@ -11,15 +11,15 @@ namespace MyTriviaApp.Services
 {
     public class Service
     {
-       List<Player> players ;
-        List<Question> questions ;
+        List<Player> players;
+        List<Question> questions;
         List<Rank> ranks;
-        List<Status> statuses ;
-        List<Subject> subjects ;
-       
+        List<Status> statuses;
+        List<Subject> subjects;
+
         public Service()
         {
-           this.players=new List<Player>();
+            this.players = new List<Player>();
             this.questions = new List<Question>();
             this.ranks = new List<Rank>();
             this.statuses = new List<Status>();
@@ -28,13 +28,13 @@ namespace MyTriviaApp.Services
             FillSubject();
             FillStatus();
             FillPlayers();
-            
+
 
         }
 
         private void FillRank()
         {
-            ranks.Add(new Rank() {RankId=0,RankName="Admin"});
+            ranks.Add(new Rank() { RankId = 0, RankName = "Admin" });
             ranks.Add(new Rank() { RankId = 0, RankName = "Master" });
             ranks.Add(new Rank() { RankId = 0, RankName = "Rookie" });
         }
@@ -52,24 +52,22 @@ namespace MyTriviaApp.Services
         }
         private void FillPlayers()
         {
-            players.Add(new Player { Mail="Ben.Sha@gmail.com", Name = "Ben", RankId = ranks[0].GetRankId(0), Points = 0, Password = "123", Rank = ranks[0] });
-            
+            players.Add(new Player { Mail = "Ben.Sha@gmail.com", Name = "Ben", RankId = ranks[0].GetRankId(0), Points = 0, Password = "123", Rank = ranks[0] });
+
             //להוסיף עוד שחקן
         }
 
-       //להוסיף fill questions
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+        //להוסיף fill questions
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
         public bool Login(string user, string pass)
         {
+            return players.Any((x) => x.Name == user && x.Password == pass);
+        }
 
-          return  players.Any((x) => x.Name == user && x.Password == pass);
-            //for(int i=0;i<user.Count();i++)
-            //{
-            //    User x= players[i];
-            //    if (x.UserName == user && x.Password==pass)
-            //        return true;
-            //}
-            //return false;
+        public async Task<List<Player>> GetStudents()
+        {
+            await Task.Delay(1000);
+            return players.ToList();
         }
 
     }
