@@ -5,10 +5,19 @@
              xmlns:vm="clr-namespace:MyTriviaApp.ViewModels"
  x:DataType="vm:BestScoresPageViewModel"
              Title="BestScoresPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+
+        <StackLayout>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView x:Name="colview" ItemsSource="{Binding Players}" EmptyView="לא נמצאו משתמשים.">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
+    </ScrollView>
+
 </ContentPage>
