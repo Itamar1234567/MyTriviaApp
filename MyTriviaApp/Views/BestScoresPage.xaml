@@ -3,18 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyTriviaApp.Views.BestScoresPage"
              xmlns:vm="clr-namespace:MyTriviaApp.ViewModels"
+             xmlns:models="clr-namespace:MyTriviaApp.Models"
  x:DataType="vm:BestScoresPageViewModel"
              Title="BestScoresPage">
 
     <ScrollView>
 
         <StackLayout>
+            <Grid
+    HorizontalOptions="Center"
+    RowDefinitions="*,*"
+    RowSpacing="2">
+                <HorizontalStackLayout
+        Margin="15"
+        HorizontalOptions="Center"
+        Spacing="10">
+               
+                    <Button
+BackgroundColor="Coral"
+Command="{Binding RefreshCommand}"
+CornerRadius="20"
+Text="רענן"
+WidthRequest="110" 
+            BorderColor="Black"
+            BorderWidth="2"/>
+                    <Button
+BackgroundColor="Coral"
+Command="{Binding LoadPlayersCommand}"
+CornerRadius="20"
+Text="טען תלמידים"
+WidthRequest="110" 
+            BorderColor="Black"
+            BorderWidth="2"/>
+                </HorizontalStackLayout>
+            </Grid>
+            
             <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-                <CollectionView x:Name="colview" ItemsSource="{Binding Players}" EmptyView="לא נמצאו משתמשים.">
+                <Grid BackgroundColor="SandyBrown">
+                    <CollectionView x:Name="colview" ItemsSource="{Binding Players}" EmptyView="לא נמצאו משתמשים.">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        
+                        <DataTemplate x:DataType="models:Player">
+                            <Grid BackgroundColor="SandyBrown">
+                                <Frame BorderColor="DarkBlue" CornerRadius="20" BackgroundColor="CadetBlue" Margin="25,5,25,5">
+                                    <StackLayout Margin="20,0,20,0">
+
+                                        <Label Margin="20,0,0,0">
+
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="Name:"/>
+                                                    <Span Text="{Binding Name}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+
+                                        <Label Margin="20,0,0,0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="Points:"/>
+                                                    <Span Text="{Binding Points}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
                 </CollectionView>
+                </Grid>
             </RefreshView>
         </StackLayout>
 

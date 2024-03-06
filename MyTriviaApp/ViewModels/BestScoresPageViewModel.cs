@@ -17,6 +17,7 @@ namespace MyTriviaApp.ViewModels
         public ICommand RefreshCommand { get; private set; }
         private bool isRefreshing;
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
+        private bool isOrdered;
         private Service service;
         public BestScoresPageViewModel(Service service)
         {
@@ -29,17 +30,33 @@ namespace MyTriviaApp.ViewModels
 
         private async Task LoadPlayers()
         {
-            var fullList = await service.GetStudents();
+            IsRefreshing = false;
+            var fullList = await service.GetStudentsDeccending();
             Players.Clear();
             foreach (var player in fullList)
             {
                 Players.Add(player);
             }
+            isOrdered = true;
+        }
+        private async Task ChangeOrder()
+        {
+            IsRefreshing = true;
+            var fullList = await service.GetStudentsAccending();
+            Players.Clear();
+            foreach (var player in fullList)
+            {
+                Players.Add(player);
+            }
+            isOrdered = false;
         }
         private async Task Refresh()
         {
             IsRefreshing = true;
-            await LoadPlayers();
+            if(!isOrdered)
+                await LoadPlayers();
+            else 
+                await ChangeOrder();
             IsRefreshing = false;
         }
     }

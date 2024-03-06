@@ -9,7 +9,7 @@
 
     <ShellContent
         Title="BestScores"
-        ContentTemplate="{DataTemplate views:BestScores}"
+        ContentTemplate="{DataTemplate views:BestScoresPage}"
         Route="BestScores" />
 
 </Shell>

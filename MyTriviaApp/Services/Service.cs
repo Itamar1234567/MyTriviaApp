@@ -53,6 +53,8 @@ namespace MyTriviaApp.Services
         private void FillPlayers()
         {
             players.Add(new Player { Mail = "Ben.Sha@gmail.com", Name = "Ben", RankId = ranks[0].GetRankId(0), Points = 0, Password = "123", Rank = ranks[0] });
+            players.Add(new Player { Mail = "itamar@gmail.com", Name = "Itamar", RankId = ranks[0].GetRankId(0), Points = 100, Password = "123", Rank = ranks[0] });
+            players.Add(new Player { Mail = "ran@gmail.com", Name = "Ran", RankId = ranks[0].GetRankId(0), Points = 15, Password = "123", Rank = ranks[0] });
 
             //להוסיף עוד שחקן
         }
@@ -64,10 +66,15 @@ namespace MyTriviaApp.Services
             return players.Any((x) => x.Name == user && x.Password == pass);
         }
 
-        public async Task<List<Player>> GetStudents()
+        public async Task<List<Player>> GetStudentsDeccending()
         {
             await Task.Delay(1000);
-            return players.ToList();
+            return players.OrderByDescending(x => x.Points).ToList();
+        }
+        public async Task<List<Player>> GetStudentsAccending()
+        {
+            await Task.Delay(1000);
+            return players.OrderBy(x => x.Points).ToList();
         }
 
     }
